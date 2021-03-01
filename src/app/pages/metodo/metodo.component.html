@@ -1,0 +1,175 @@
+<div class="container">
+  <h1 class="text-center mt-3 text-uppercase">Método Biseccion</h1>
+  <hr />
+
+  <div class="row">
+    <div class="col-lg-3 mb-3">
+      <form [formGroup]="formBiseccion" class="shadow rounded p-3 bg-white">
+        <div class="form-group">
+          <label for="" class="font-weight-bold"
+            >Ingrese la función f(x):</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            formControlName="funcion"
+            (keypress)="isFuncion($event)"
+            [class.is-invalid]="
+              fC.funcion.invalid && (fC.funcion.dirty || fC.funcion.touched)
+            "
+          />
+          <div
+            *ngIf="
+              fC.funcion.invalid && (fC.funcion.dirty || fC.funcion.touched)
+            "
+            class="invalid-feedback blur-5"
+          >
+            <div *ngIf="fC.funcion.errors.required">Funcion es requerida.</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="" class="font-weight-bold">Intervalo [a]:</label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="intervalo_a"
+            (keypress)="isNumber($event)"
+            [class.is-invalid]="
+              fC.intervalo_a.invalid &&
+              (fC.intervalo_a.dirty || fC.intervalo_a.touched)
+            "
+          />
+          <div
+            *ngIf="
+              fC.intervalo_a.invalid &&
+              (fC.intervalo_a.dirty || fC.intervalo_a.touched)
+            "
+            class="invalid-feedback blur-5"
+          >
+            <div *ngIf="fC.intervalo_a.errors.required">
+              Intervalo (a) es requerido.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="" class="font-weight-bold">Intervalo [b]:</label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="intervalo_b"
+            (keypress)="isNumber($event)"
+            [class.is-invalid]="
+              fC.intervalo_b.invalid &&
+              (fC.intervalo_b.dirty || fC.intervalo_b.touched)
+            "
+          />
+          <div
+            *ngIf="
+              fC.intervalo_b.invalid &&
+              (fC.intervalo_b.dirty || fC.intervalo_b.touched)
+            "
+            class="invalid-feedback blur-5"
+          >
+            <div *ngIf="fC.intervalo_b.errors.required">
+              Intervalo (b) es requerido.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="" class="font-weight-bold">Tolerancia:</label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="tolerancia"
+            (keypress)="isNumber($event)"
+            [class.is-invalid]="
+              fC.tolerancia.invalid &&
+              (fC.tolerancia.dirty || fC.tolerancia.touched)
+            "
+          />
+          <div
+            *ngIf="
+              fC.tolerancia.invalid &&
+              (fC.tolerancia.dirty || fC.tolerancia.touched)
+            "
+            class="invalid-feedback blur-5"
+          >
+            <div *ngIf="fC.tolerancia.errors.required">
+              Tolerancia es requerida.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="" class="font-weight-bold">Num Iteraciones:</label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="numIteraciones"
+            (keypress)="isNumber($event)"
+            [class.is-invalid]="
+              fC.numIteraciones.invalid &&
+              (fC.numIteraciones.dirty || fC.numIteraciones.touched)
+            "
+          />
+          <div
+            *ngIf="
+              fC.numIteraciones.invalid &&
+              (fC.numIteraciones.dirty || fC.numIteraciones.touched)
+            "
+            class="invalid-feedback blur-5"
+          >
+            <div *ngIf="fC.numIteraciones.errors.required">
+              N° Iteraciones es requerido.
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="btn btn-success btn-lg btn-block"
+          [disabled]="formBiseccion.invalid"
+          (click)="biseccion()"
+          type="button"
+        >
+          Calcular Metodo
+        </button>
+      </form>
+    </div>
+
+    <div class="col-lg-9 mb-3">
+      <div class="shadow rounded p-3 bg-white">
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Iteracion</th>
+                <th scope="col">Iter_A</th>
+                <th scope="col">Iter_B</th>
+                <th scope="col">P</th>
+                <th scope="col">f(a)</th>
+                <th scope="col">f(b)</th>
+                <th scope="col">f(p)</th>
+                <th scope="col">Error</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let r of result">
+                <td>{{ r.iteracion }}</td>
+                <td>{{ r.intervalo_a }}</td>
+                <td>{{ r.intervalo_b }}</td>
+                <td>{{ r.p }}</td>
+                <td>{{ r.fa }}</td>
+                <td>{{ r.fb }}</td>
+                <td>{{ r.fp }}</td>
+                <td>{{ r.error }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
