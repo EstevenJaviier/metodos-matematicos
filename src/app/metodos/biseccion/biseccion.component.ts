@@ -19,10 +19,10 @@ export class BiseccionComponent implements OnInit {
   ngOnInit(): void {
     this.formBiseccion = this.fb.group({
       funcion: ['x^3-7*x^2+14*x-6', Validators.required],
-      intervalo_a: ['0', Validators.required],
-      intervalo_b: ['1', Validators.required],
-      tolerancia: ['0.05', Validators.required],
-      numIteraciones: ['100', Validators.required],
+      intervalo_a: [0, Validators.required],
+      intervalo_b: [1, Validators.required],
+      tolerancia: [0.05, Validators.required],
+      numIteraciones: [100, Validators.required],
     });
   }
 
@@ -73,13 +73,13 @@ export class BiseccionComponent implements OnInit {
 
         this.result.push({
           iteracion,
-          intervalo_a: a,
-          intervalo_b: b,
-          p,
-          fa,
-          fb,
-          fp,
-          error,
+          a: a.toFixed(6),
+          b: b.toFixed(6),
+          p: p.toFixed(6),
+          fa: a.toFixed(6),
+          fb: fb.toFixed(6),
+          fp: fp.toFixed(6),
+          error: error.toFixed(6),
         });
         iteracion++;
 
