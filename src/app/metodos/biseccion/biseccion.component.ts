@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as math from 'mathjs';
 
 @Component({
-  templateUrl: './metodo.component.html',
-  styleUrls: ['./metodo.component.css'],
+  templateUrl: './biseccion.component.html',
+  styleUrls: ['./biseccion.component.css'],
 })
-export class MetodoComponent implements OnInit {
+export class BiseccionComponent implements OnInit {
   result: Array<any>;
   formBiseccion: FormGroup;
 

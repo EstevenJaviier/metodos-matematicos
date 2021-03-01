@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MetodoComponent } from './pages/metodo/metodo.component';
+import { BiseccionComponent } from './metodos/biseccion/biseccion.component';
 
-const routes: Routes = [{ path: '**', component: MetodoComponent }];
+const routes: Routes = [{ path: '**', component: BiseccionComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
