@@ -44,18 +44,13 @@ export class BiseccionComponent implements OnInit {
     /[0-9|.|,]/.test(chart) || e.preventDefault();
   }
 
-  isFuncion(e: KeyboardEvent) {
-    const chart = String.fromCharCode(e.which);
-    /[0-9|x|^|+|/|*|-]/.test(chart) || e.preventDefault();
-  }
-
   biseccion() {
     try {
       this.result = [];
 
-      let iteracion = 1;
-      let a = this.formBiseccion.get('intervalo_a').value;
-      let b = this.formBiseccion.get('intervalo_b').value;
+      let iteracion = 0;
+      let a: number = this.formBiseccion.get('intervalo_a').value;
+      let b: number = this.formBiseccion.get('intervalo_b').value;
       let p = 0;
       let fa = 0;
       let fb = 0;
@@ -63,13 +58,14 @@ export class BiseccionComponent implements OnInit {
       let error = 0;
       let aux = 0;
 
-      while (iteracion <= this.formBiseccion.get('numIteraciones').value) {
+      while (iteracion < this.formBiseccion.get('numIteraciones').value) {
         p = (a + b) / 2;
         fp = this.f(p);
         fa = this.f(a);
         fb = this.f(b);
         error = Math.abs(p - aux); //Math.abs retorna el valor absoluto
         aux = p;
+        iteracion++;
 
         this.result.push({
           iteracion,
@@ -81,7 +77,6 @@ export class BiseccionComponent implements OnInit {
           fp: fp.toFixed(6),
           error: error.toFixed(6),
         });
-        iteracion++;
 
         if (fp * fa < 0) {
           b = p;
